@@ -55,17 +55,17 @@ public final class Util {
 
         //runs tutorial
         Util.tutorialText();
-
         System.out.println(grid);
-        grid.changePlayerX();
-        grid.changePlayerY();
-        grid.refreshGrid();
-        if (grid.canFish() == false && (grid.playerX != grid.pondX && grid.playerY != grid.pondY)) {
-            System.out.println("Uh Oh!\nYou got lost on your way\nTry Again");
-        }
-        if(grid.canFish() == true) {
-            System.out.println("You have arrived at the pond.\nYou can now start fishing");
-        }
+        while(grid.canFish() == false) {
+            grid.changePlayerX();
+            grid.changePlayerY();
+            grid.refreshGrid();
+            if (grid.canFish() == false && (grid.playerX != grid.pondX && grid.playerY != grid.pondY)) {
+                System.out.println("Uh Oh!\nYou got lost on your way\nTry Again");
+            }
+            if (grid.canFish() == true) {
+                System.out.println("You have arrived at the pond.\nYou can now start fishing");
+            }
 //        f.addKeyListener(new KeyListener() {
 //
 //            @Override
@@ -83,6 +83,7 @@ public final class Util {
 //            public void keyReleased(KeyEvent e) {
 //            }
 //        });
+        }
 
 
         //allows the round to be played multiple times and if they are near a pond, but ends if they dont catch the fish.
@@ -110,7 +111,7 @@ public final class Util {
                 public void run() {
                     if (str.equals("")) {
                         System.out.println("\nToo Slow!");
-                        System.out.println("You scared away all the fish!");
+                        System.out.println("You scared away all the fish!\nYou'll need to come back another day once the fish have returned");
                         System.exit(0);
                     }
                 }
@@ -121,10 +122,15 @@ public final class Util {
             String in = sc.next();
             timer.cancel();
 
-            //shows user results
+            //shows user results and prints caught fish if user wants
             if (fishing.didCatch(in, winningWord)) {
                 fishing.storeFish(fish);
                 System.out.println("You have caught a " + fish);
+                System.out.println("Press 'i' if you would like to view your inventory full of fish!\nOr enter anything else if you would like to skip this");
+                String viewFish = scan.nextLine();
+                if(viewFish.equals("i")) {
+                    fishing.readStoredFish();
+                }
             }
             else {
                 System.out.println(fish + " broke free");
@@ -133,6 +139,11 @@ public final class Util {
             String userInput = scan.nextLine();
             if(userInput.equals("n")) {
                 playAgain = false;
+            System.out.println("Press 'i' to view your inventory full of fish!");
+            String viewFish = scan.nextLine();
+            if(viewFish.equals("i")) {
+                fishing.readStoredFish();
+            }
             }
         }
     }

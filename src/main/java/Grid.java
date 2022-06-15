@@ -57,13 +57,13 @@ public class Grid {
     }
     //changes player y
     public void changePlayerY() {
-        System.out.println("How much would you like to move up or down?");
+        System.out.println("How much would you like to move up or down?\nUse negative numbers to move down and positive numbers to move up");
         int amountMovedY = scan.nextInt();
         playerY -= amountMovedY;
     }
     // changes players x
     public void changePlayerX() {
-        System.out.println("How much would you like to move left or right?");
+        System.out.println("How much would you like to move left or right?\nUse negative numbers to move left and positive numbers to move right");
         int amountMovedX = scan.nextInt();
         playerX += amountMovedX;
 
