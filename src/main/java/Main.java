@@ -12,6 +12,7 @@ public class Main {
 
         //runs code from Util class... this is to keep the main class decluddered and easy to understand
         Util run = new Util();
+        run.tutorialText();
         run.runGame();
 
 

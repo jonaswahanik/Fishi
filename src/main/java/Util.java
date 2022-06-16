@@ -53,8 +53,6 @@ public final class Util {
 
         Scanner scan = new Scanner(System.in);
 
-        //runs tutorial
-        Util.tutorialText();
         System.out.println(grid);
         while(grid.canFish() == false) {
             grid.changePlayerX();
@@ -112,10 +110,24 @@ public final class Util {
                     if (str.equals("")) {
                         System.out.println("\nToo Slow!");
                         System.out.println("You scared away all the fish!\nYou'll need to come back another day once the fish have returned");
-                        System.exit(0);
+                        try {
+                            runGame();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+//                        try {
+//
+//                            grid.refreshGrid();
+//                            runGame();
+//
+//                        } catch (IOException e) {
+//
+//                            e.printStackTrace();
+//                        }
                     }
                 }
             };
+
             Timer timer = new Timer();
             timer.schedule(task, 2500);
             Scanner sc = new Scanner(System.in);

@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Grid {
@@ -66,7 +67,6 @@ public class Grid {
         System.out.println("How much would you like to move left or right?\nUse negative numbers to move left and positive numbers to move right");
         int amountMovedX = scan.nextInt();
         playerX += amountMovedX;
-
     }
     //if you are adjacent to the pond you can fish
     public boolean canFish() {
@@ -109,6 +109,7 @@ public class Grid {
         }
 
     }
+
 
 
 
